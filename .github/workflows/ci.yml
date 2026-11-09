@@ -6,6 +6,18 @@ on:
     branches: [main, master]
 
 jobs:
+  backend-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/backend/Dockerfile
+          push: false
+
   build:
     runs-on: ubuntu-latest
     steps:

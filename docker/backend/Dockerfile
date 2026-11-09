@@ -3,7 +3,7 @@ FROM node:${NODE_VERSION}-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
 
 FROM base AS prepare
 WORKDIR /app
@@ -16,15 +16,15 @@ FROM base AS builder
 WORKDIR /app
 
 COPY --from=prepare /app/out/json/ .
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
 COPY --from=prepare /app/out/full/ .
 # no build step since we will use tsx
-RUN cd packages/database && pnpm dlx prisma generate
+RUN cd packages/database && pnpm exec prisma generate
 
 FROM base AS runner
 WORKDIR /app
-RUN pnpm add -g tsx
+RUN pnpm add -g tsx@4.21.0
 
 # Don't run production as root , security problem
 RUN addgroup --system --gid 1001 expressjs
