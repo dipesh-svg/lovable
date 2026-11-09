@@ -16,7 +16,7 @@ import { chatRouter } from "./router/chatRouter";
 import { sandboxRouter } from "./router/sandboxRouter";
 import { deployRouter } from "./router/deployRouter";
 
-const app = express();
+const app: express.Express = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 config({

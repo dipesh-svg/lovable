@@ -40,6 +40,7 @@ export function loadToolDefinitions(): ToolDefinition[] {
   } catch (err) {
     console.log("failed here ");
     console.log(err);
+    throw err;
   }
 }
 

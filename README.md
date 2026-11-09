@@ -49,8 +49,8 @@ docker/
 
    ```sh
    cd packages/database
-   pnpm dlx prisma migrate dev --name init
-   pnpm dlx prisma generate
+   pnpm exec prisma migrate dev --name init
+   pnpm exec prisma generate
    ```
 
 4. **Start the dev servers**
