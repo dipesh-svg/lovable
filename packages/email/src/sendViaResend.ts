@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { ResendEmailOptions } from "./resend/types";
+import type { ResendEmailOptions } from "./types";
 
 export default async function sendEmailViaResend(
   resend: Resend,

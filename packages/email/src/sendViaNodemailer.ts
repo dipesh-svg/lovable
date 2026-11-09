@@ -1,5 +1,5 @@
 import { render, pretty } from "@react-email/render";
-import { NodemailerInput } from "./resend/types";
+import type { NodemailerInput } from "./types";
 
 export default async function sendEmailViaNodemailer({
   to,

@@ -1,7 +1,6 @@
 import sendEmailViaResend from "./sendViaResend";
 import sendEmailViaNodemailer from "./sendViaNodemailer";
-import { ResendEmailOptions } from "./resend/types";
-import { EmailConfig } from "./types";
+import type { EmailConfig, ResendEmailOptions } from "./types";
 import { Resend } from "resend";
 import { createTransport, Transporter } from "nodemailer";
 

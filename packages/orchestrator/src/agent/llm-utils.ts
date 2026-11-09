@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import type { ChatCompletionMessageParam } from "openai/resources/chat/completions";
-import type { StreamChunk } from "@repo/common/types";
+import type { AgentStatusEvent, StreamChunk } from "@repo/common/types";
 import { ToolExecutor } from "../tools/executor.js";
 
 /**
@@ -55,7 +55,7 @@ export async function runSingleLLMTurn(opts: {
   toolDefinitions: OpenAI.ChatCompletionTool[];
   toolExecutor: ToolExecutor;
   onStream: (chunk: StreamChunk) => void;
-  statusWhileWorking: StreamChunk["status"];
+  statusWhileWorking: AgentStatusEvent["status"];
   logPrefix?: string;
 }): Promise<{ finished: boolean }> {
   const {
@@ -131,7 +131,7 @@ export async function runMiniAgentLoop(opts: {
   toolDefinitions: OpenAI.ChatCompletionTool[];
   toolExecutor: ToolExecutor;
   onStream: (chunk: StreamChunk) => void;
-  statusWhileWorking: StreamChunk["status"];
+  statusWhileWorking: AgentStatusEvent["status"];
   maxSteps: number;
   logPrefix?: string;
 }): Promise<void> {
